@@ -1,0 +1,136 @@
+
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Calculator Buget Avocat Stagiar</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      max-width: 700px;
+      margin: 40px auto;
+      padding: 0 20px;
+      background: #f9f9f9;
+      color: #333;
+    }
+    h1, h2, h3 {
+      text-align: center;
+    }
+    input, button {
+      padding: 10px;
+      font-size: 16px;
+      margin-top: 10px;
+      width: 100%;
+    }
+    .results {
+      background: #fff;
+      border: 1px solid #ccc;
+      padding: 20px;
+      margin-top: 20px;
+    }
+    .disclaimer {
+      font-size: 0.9em;
+      color: #666;
+      margin-top: 40px;
+      border-top: 1px dashed #bbb;
+      padding-top: 20px;
+    }
+  </style>
+</head>
+<body>
+  <h1>Calculator Buget pentru Avocați Stagiari</h1>
+
+  <p>
+    Dacă ești avocat stagiar în Baroul București, ai o serie de contribuții lunare pe care trebuie să le acoperi din venitul tău brut. Acest calculator te ajută să înțelegi rapid ce sume ar trebui să pui deoparte și cât rămâne efectiv pentru cheltuielile tale lunare.
+  </p>
+
+  <ul>
+    <li>✅ Contribuție pentru impozitul pe venit (10%) — se plătește anual și se calculează după o formulă complexă, dar este recomandabil să păstrezi lunar 10% din venitul brut pentru a putea achita suma anul următor</li>
+    <li>✅ Contribuție CASS (10%) — se plătește anual și se calculează după o formulă complexă, dar este recomandabil să păstrezi lunar 10% din venitul brut pentru a putea achita suma anul următor</li>
+    <li>✅ Contribuție la Casa de Asigurări a Avocaților - Filiala București-Ilfov:<br/>
+      - Pentru venit brut cuprins între 0 – 871 RON: contribuția este 122 RON<br/>
+      - Pentru venit brut cuprins între 872 – 19.993 RON: contribuția este 14% din venitul brut<br/>
+      - Pentru venit brut de peste 19.993 RON: contribuția este 2.800 RON
+    </li>
+    <li>✅ Contribuție Barou (pentru anul 2025): 15 RON</li>
+    <li>✅ Contribuție UNBR (pentru anul 2025): 10 RON</li>
+    <li>✅ Contribuție la Fondul de Solidaritate (pentru anul 2025): 5 RON</li>
+  </ul>
+
+  <p>
+    După ce scădem toate aceste contribuții din venitul brut, îți oferim și o recomandare pentru bugetul personal, împărțit după regula 50-30-20: 50% pentru nevoi, 30% pentru dorințe, 20% pentru economii sau investiții.
+  </p>
+
+  <p>
+    Regula 50-30-20 este un principiu simplu de gestionare a bugetului personal, popularizat de senatoarea americană Elizabeth Warren în cartea sa „All Your Worth: The Ultimate Lifetime Money Plan”. Scopul acestei reguli este să ofere o structură clară pentru cheltuirea veniturilor lunare, evitând atât dezechilibrele financiare, cât și presiunea deciziilor financiare impulsive.
+  </p>
+
+  <p>
+    Ideea din spatele regulii este că bugetul lunar trebuie împărțit astfel încât să asigure un echilibru între nevoile esențiale (50%), dorințele personale (30%) și economisirea sau investiția pentru viitor (20%). Deși este doar o recomandare, această abordare ajută mulți profesioniști să își păstreze controlul asupra finanțelor proprii.
+  </p>
+
+  <label for="brut">Introdu suma brută încasată (lei):</label>
+  <input type="number" id="brut" placeholder="Ex: 4000" />
+  <button onclick="calculeaza()">Calculează</button>
+
+  <div class="results" id="rezultat" style="display:none;"></div>
+
+  <div class="disclaimer">
+    <p><strong>Disclaimer:</strong></p>
+    <p>Acest calculator are un scop exclusiv orientativ și informativ. Nu înlocuiește consultanța unui contabil sau specialist în fiscalitate. Valoarea reală a contribuțiilor și impozitelor poate varia în funcție de legislația fiscală aplicabilă, structura exactă a veniturilor, și alți factori personali sau profesionali.</p>
+    <p>Recomandăm ferm consultarea unui contabil autorizat pentru o imagine completă și corectă asupra obligațiilor tale financiare. Acest instrument este oferit ca punct de pornire pentru o mai bună înțelegere a bugetului lunar al unui avocat stagiar.</p>
+  </div>
+
+  <script>
+    function calculeaza() {
+      const brut = parseFloat(document.getElementById('brut').value);
+      if (isNaN(brut) || brut <= 0) {
+        alert("Te rog introdu o sumă validă.");
+        return;
+      }
+
+      let caa = 0;
+      if (brut <= 871) {
+        caa = 122;
+      } else if (brut <= 19993) {
+        caa = brut * 0.14;
+      } else {
+        caa = 2800;
+      }
+
+      const impozit = brut * 0.10;
+      const cass = brut * 0.10;
+      const barou = 15;
+      const unbr = 10;
+      const solidaritate = 5;
+
+      const totalContributii = caa + impozit + cass + barou + unbr + solidaritate;
+      const net = brut - totalContributii;
+
+      const nevoi = net * 0.5;
+      const dorinte = net * 0.3;
+      const economii = net * 0.2;
+
+      document.getElementById('rezultat').style.display = 'block';
+      document.getElementById('rezultat').innerHTML = `
+        <h2>Rezultatul Calculului</h2>
+        <p><strong>Contribuție pentru impozitul pe venit (10%):</strong> ${impozit.toFixed(2)} lei</p>
+        <p><strong>Contribuție CASS (10%):</strong> ${cass.toFixed(2)} lei</p>
+        <p><strong>Contribuție Casa de Asigurări a Avocaților:</strong> ${caa.toFixed(2)} lei</p>
+        <p><strong>Contribuție Barou:</strong> ${barou} lei</p>
+        <p><strong>Contribuție UNBR:</strong> ${unbr} lei</p>
+        <p><strong>Contribuție Fond de Solidaritate:</strong> ${solidaritate} lei</p>
+        <hr>
+        <p><strong>Total contribuții:</strong> ${totalContributii.toFixed(2)} lei</p>
+        <p><strong>Net disponibil:</strong> ${net.toFixed(2)} lei</p>
+        <hr>
+        <h3>Recomandare 50-30-20:</h3>
+        <p>➤ Nevoi (50%): ${nevoi.toFixed(2)} lei</p>
+        <p>➤ Dorințe (30%): ${dorinte.toFixed(2)} lei</p>
+        <p>➤ Economii/Investiții (20%): ${economii.toFixed(2)} lei</p>
+      `;
+    }
+  </script>
+</body>
+</html>

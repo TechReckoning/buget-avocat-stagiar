@@ -13,24 +13,23 @@
       background: #ffffff;
       color: #000000;
       text-align: justify;
+      max-width: 1200px;
+      margin-left: auto;
+      margin-right: auto;
     }
 
     h1, h2, h3 {
       text-align: center;
     }
 
-    .container {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 40px;
-      max-width: 1200px;
-      margin: auto;
+    .container-text {
+      column-count: 2;
+      column-gap: 40px;
     }
 
     @media (max-width: 768px) {
-      .container {
-        grid-template-columns: 1fr;
-        padding: 0 10px;
+      .container-text {
+        column-count: 1;
       }
     }
 
@@ -39,7 +38,6 @@
       margin-top: 20px;
       display: block;
       text-align: left;
-      grid-column: 1 / -1;
     }
 
     input, button {
@@ -54,7 +52,6 @@
       border: 1px solid #ccc;
       padding: 20px;
       margin-top: 20px;
-      grid-column: 1 / -1;
     }
 
     .disclaimer {
@@ -63,11 +60,10 @@
       margin-top: 40px;
       border-top: 1px dashed #bbb;
       padding-top: 20px;
-      grid-column: 1 / -1;
     }
 
     .link-uri {
-      grid-column: 1 / -1;
+      margin-top: 40px;
     }
   </style>
 </head>
@@ -75,15 +71,13 @@
   <h1>Calculator Orientativ pentru Bugetul Avocatului Stagiar</h1>
   <h3>Poate da dureri de cap pe moment, dar te scapă de dureri de cap pe viitor!</h3>
 
-  <div class="container">
+  <div class="container-text">
     <p>
       Dacă ești avocat stagiar în Baroul București, ai o serie de impozite și contribuții pe care trebuie să le acoperi din venitul tău brut. Acest calculator te ajută să înțelegi rapid, cu titlu orientativ, ce sume ar trebui să pui deoparte și cât rămâne efectiv pentru cheltuielile tale lunare.
     </p>
-
     <p>
       Să începem prin a identifica impozitele și contribuțiile pe care trebuie să le plătești:
     </p>
-
     <ul>
       <li>Impozit pe venit (10%) (pentru anul 2025) — se plătește anual și se calculează după o formulă complexă, dar este recomandabil să păstrezi lunar 10% din venitul brut pentru a putea achita suma anul următor</li>
       <li>Contribuție de asigurări sociale de sănătate (CASS) (10%) (pentru anul 2025) — se plătește anual și se calculează după o formulă complexă, dar este recomandabil să păstrezi lunar 10% din venitul brut pentru a putea achita suma anul următor</li>
@@ -96,39 +90,35 @@
       <li>Contribuție lunară la Uniunea Națională a Barourilor din România (pentru anul 2025): 10 RON</li>
       <li>Contribuție lunară la Fondul de Solidaritate (pentru anul 2025): 5 RON</li>
     </ul>
-
     <p>
       După ce scădem toate aceste contribuții din venitul brut, îți oferim și o recomandare pentru bugetul personal, ce poate fi împărțit după regula 50-30-20: 50% pentru nevoi, 30% pentru dorințe, 20% pentru economii sau investiții.
     </p>
-
     <p>
       Regula 50-30-20 este un principiu simplu de gestionare a bugetului personal, popularizat de senatoarea americană Elizabeth Warren în cartea sa „All Your Worth: The Ultimate Lifetime Money Plan”. Scopul acestei reguli este să ofere o structură clară pentru cheltuirea veniturilor lunare, evitând atât dezechilibrele financiare, cât și presiunea deciziilor financiare impulsive.
     </p>
-
     <p>
       Ideea din spatele regulii este că bugetul lunar trebuie împărțit astfel încât să asigure un echilibru între nevoile esențiale (50%), dorințele personale (30%) și economisirea sau investiția pentru viitor (20%). Deși este doar o recomandare, această abordare ajută mulți profesioniști să își păstreze controlul asupra finanțelor proprii.
     </p>
-
     <p>Recomandăm să repeți acest calcul lunar, la data de 25 a fiecărei luni.</p>
+  </div>
 
-    <label for="brut">Introdu suma brută încasată (lei):</label>
-    <input type="number" id="brut" placeholder="Ex: 7500" />
-    <button onclick="calculeaza()">Calculează</button>
+  <label for="brut">Introdu suma brută încasată (lei):</label>
+  <input type="number" id="brut" placeholder="Ex: 7500" />
+  <button onclick="calculeaza()">Calculează</button>
 
-    <div class="results" id="rezultat" style="display:none;"></div>
+  <div class="results" id="rezultat" style="display:none;"></div>
 
-    <div class="link-uri">
-      <p><strong>Link-uri utile:</strong></p>
-      <p>Pentru plata cu cardul a contribuțiilor lunare la Baroul București, la Uniunea Națională a Barourilor din România sau la Fondul de Solidaritate: <a href="https://www.baroul-bucuresti.ro/taxe">https://www.baroul-bucuresti.ro/taxe</a>.</p>
-      <p>Pentru plata prin virament bancar a contribuțiilor lunare la Baroul București, la Uniunea Națională a Barourilor din România sau la Fondul de Solidaritate: <a href="https://www.baroul-bucuresti.ro/plata-prin-transfer-bancar">https://www.baroul-bucuresti.ro/plata-prin-transfer-bancar</a>.</p>
-      <p>Pentru plata contribuției lunare la Casa de Asigurări a Avocaților - Filiala București-Ilfov: <a href="https://www.filbuc-caa.ro">https://www.filbuc-caa.ro</a>.</p>
-    </div>
+  <div class="link-uri">
+    <p><strong>Link-uri utile:</strong></p>
+    <p>Pentru plata cu cardul a contribuțiilor lunare la Baroul București, la Uniunea Națională a Barourilor din România sau la Fondul de Solidaritate: <a href="https://www.baroul-bucuresti.ro/taxe">https://www.baroul-bucuresti.ro/taxe</a>.</p>
+    <p>Pentru plata prin virament bancar a contribuțiilor lunare la Baroul București, la Uniunea Națională a Barourilor din România sau la Fondul de Solidaritate: <a href="https://www.baroul-bucuresti.ro/plata-prin-transfer-bancar">https://www.baroul-bucuresti.ro/plata-prin-transfer-bancar</a>.</p>
+    <p>Pentru plata contribuției lunare la Casa de Asigurări a Avocaților - Filiala București-Ilfov: <a href="https://www.filbuc-caa.ro">https://www.filbuc-caa.ro</a>.</p>
+  </div>
 
-    <div class="disclaimer">
-      <p><strong>Disclaimer:</strong></p>
-      <p>Acest calculator are un scop exclusiv orientativ și informativ. Nu înlocuiește consultanța unui contabil sau a unui specialist în fiscalitate. Valoarea reală a impozitelor și a contribuțiilor poate varia în funcție de legislația fiscală aplicabilă, structura exactă a veniturilor, și alți factori personali sau profesionali.</p>
-      <p>Recomandăm ferm consultarea unui contabil autorizat pentru o imagine completă și corectă asupra obligațiilor tale financiare. Acest instrument este oferit ca punct de pornire pentru o mai bună și o mai rapidă înțelegere a bugetului lunar al unui avocat stagiar.</p>
-    </div>
+  <div class="disclaimer">
+    <p><strong>Disclaimer:</strong></p>
+    <p>Acest calculator are un scop exclusiv orientativ și informativ. Nu înlocuiește consultanța unui contabil sau a unui specialist în fiscalitate. Valoarea reală a impozitelor și a contribuțiilor poate varia în funcție de legislația fiscală aplicabilă, structura exactă a veniturilor, și alți factori personali sau profesionali.</p>
+    <p>Recomandăm ferm consultarea unui contabil autorizat pentru o imagine completă și corectă asupra obligațiilor tale financiare. Acest instrument este oferit ca punct de pornire pentru o mai bună și o mai rapidă înțelegere a bugetului lunar al unui avocat stagiar.</p>
   </div>
 
   <script>
